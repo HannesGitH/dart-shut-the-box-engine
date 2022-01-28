@@ -9,7 +9,7 @@ environment:
 
 dependencies:
 
-  riverpod:
+  flutter_riverpod:
 
   flutter:
     sdk: flutter
