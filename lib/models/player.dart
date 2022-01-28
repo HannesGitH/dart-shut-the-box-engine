@@ -6,4 +6,6 @@ class Player {
 
   Player({this.hasWon = false, List<Card>? cardset})
       : cards = cardset ?? defaultCardSet;
+
+  bool get finished => cards.every((element) => element.isDown);
 }
