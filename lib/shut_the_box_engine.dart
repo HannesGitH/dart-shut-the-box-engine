@@ -9,3 +9,5 @@ part 'models/game.dart';
 part 'models/player.dart';
 
 part 'viewmodels/game.dart';
+
+part 'providers/game.dart';
