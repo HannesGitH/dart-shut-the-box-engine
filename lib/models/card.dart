@@ -1,3 +1,5 @@
+part of shut_the_box_engine;
+
 class Card {
   bool isDown;
   int number;

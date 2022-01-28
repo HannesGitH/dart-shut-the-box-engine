@@ -1,5 +1,4 @@
-import 'card.dart';
-import 'cardSets.dart';
+part of shut_the_box_engine;
 
 class Player {
   bool hasWon;

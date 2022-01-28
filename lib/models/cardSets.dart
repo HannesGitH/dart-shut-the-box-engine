@@ -1,4 +1,4 @@
-import 'card.dart';
+part of shut_the_box_engine;
 
 final List<Card> defaultCardSet =
     createCardWithNums([1, 2, 3, 4, 5, 6, 7, 8, 9]);

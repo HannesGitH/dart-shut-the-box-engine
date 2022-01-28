@@ -1,6 +1,4 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../models/player.dart';
-import '../models/game.dart';
+part of shut_the_box_engine;
 
 class GameVM extends StateNotifier<Game> {
   GameVM() : super(Game.playerAmount(0));

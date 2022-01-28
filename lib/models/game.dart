@@ -1,5 +1,4 @@
-import 'dice.dart';
-import 'player.dart';
+part of shut_the_box_engine;
 
 class Game {
   List<Player> players;
