@@ -5,12 +5,20 @@ class Player extends ChangeNotifier {
   late List<Card> cards;
 
   void select(int cardIndex) {
-    if ((cards.at(cardIndex)?.select() ?? false) &&
-        (cards.every((element) => element.isDown))) {
-      hasWon = true;
+    final card = cards.at(cardIndex);
+    if ((card != null) && (card.number <= _availableAugen) && (card.select())) {
+      _availableAugen -= card.number;
       notifyListeners();
+      if (cards.every((element) => element.isDown)) {
+        hasWon = true;
+        notifyListeners();
+      }
     }
   }
+
+  int _availableAugen = 0;
+
+  int get roundEyes => _availableAugen;
 
   Player({this.hasWon = false, List<Card>? cardset})
       : cards = cardset ?? defaultCardSet;

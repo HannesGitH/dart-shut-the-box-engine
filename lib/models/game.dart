@@ -10,19 +10,16 @@ class Game {
 }
 
 class GameVM extends ChangeNotifier {
-  GameVM(this.ref, {Game? game}) : this.game = game ?? Game() {
-    ref.listen<int?>(augenZahlProvider, (previous, next) {});
-  }
+  GameVM({Game? game}) : this.game = game ?? Game();
 
-  Ref ref;
   Game game;
 
   addPlayers(Iterable<Player>? newPlayers) {
     newPlayers ??= [Player()];
-    for (var element in newPlayers) {
-      element.addListener(() {
-        if (element.hasWon) {
-          winner = element;
+    for (var newPlayer in newPlayers) {
+      newPlayer.addListener(() {
+        if (newPlayer.hasWon) {
+          winner = newPlayer;
           notifyListeners();
         }
       });
@@ -40,7 +37,10 @@ class GameVM extends ChangeNotifier {
     int result = game.dice
         .map((e) => e.roll())
         .reduce((value, element) => value + element);
-    ref.read(augenZahlProvider.notifier).state = result;
+    for (var player in game.players) {
+      player._availableAugen = result;
+      player.notifyListeners();
+    }
     return result;
   }
 
