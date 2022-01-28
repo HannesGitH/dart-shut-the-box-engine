@@ -4,13 +4,13 @@ class Game {
   //operator==(Game other)=>
   List<Player> players;
   List<Dice> dice;
-  Game.playerAmount(int amount, {List<Dice>? dice})
-      : players = List.filled(amount, Player(), growable: true),
+  Game({List<Dice>? dice})
+      : players = [],
         this.dice = dice ?? List.filled(2, Dice(), growable: true);
 }
 
 class GameVM extends ChangeNotifier {
-  GameVM(this.ref, {Game? game}) : this.game = game ?? Game.playerAmount(1) {
+  GameVM(this.ref, {Game? game}) : this.game = game ?? Game() {
     ref.listen<int?>(augenZahlProvider, (previous, next) {});
   }
 
@@ -18,7 +18,16 @@ class GameVM extends ChangeNotifier {
   Game game;
 
   addPlayers(Iterable<Player>? newPlayers) {
-    game.players.addAll(newPlayers ?? [Player()]);
+    newPlayers ??= [Player()];
+    for (var element in newPlayers) {
+      element.addListener(() {
+        if (element.hasWon) {
+          winner = element;
+          notifyListeners();
+        }
+      });
+    }
+    game.players.addAll(newPlayers);
     notifyListeners();
   }
 
