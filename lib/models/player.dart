@@ -21,6 +21,10 @@ class Player extends ChangeNotifier {
     }
   }
 
+  void reset() {
+    cards.forEach((c) => c.reset());
+  }
+
   void deSelect(int cardIndex) {
     final card = cards.at(cardIndex);
     if ((card != null) &&

@@ -45,5 +45,11 @@ class GameVM extends ChangeNotifier {
     return result;
   }
 
+  void restart() {
+    winner = null;
+    game.players.forEach((p) => p.reset());
+    notifyListeners();
+  }
+
   Player? winner;
 }

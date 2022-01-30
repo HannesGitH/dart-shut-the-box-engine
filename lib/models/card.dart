@@ -25,4 +25,9 @@ class Card extends ChangeNotifier {
     isSelected = false;
     return !wasDown;
   }
+
+  void reset() {
+    isDown = false;
+    isSelected = false;
+  }
 }
