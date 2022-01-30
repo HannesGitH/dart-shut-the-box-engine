@@ -6,7 +6,10 @@ class Dice extends ChangeNotifier {
     roll();
   }
 
+  ///which side of the dice faces up (changes with [roll()], should not be written)
   late int top;
+
+  ///roll this dice
   int roll() {
     top = sides[rng.nextInt(sides.length - 1)];
     notifyListeners();

@@ -33,6 +33,7 @@ class GameVM extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// roll all [Dice] this [Game] has
   int roll() {
     int result = game.dice
         .map((e) => e.roll())
