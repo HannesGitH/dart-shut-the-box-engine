@@ -15,7 +15,7 @@ class GameVM extends ChangeNotifier {
   Game game;
 
   addPlayers(Iterable<Player>? newPlayers) {
-    newPlayers ??= [Player()];
+    newPlayers ??= [Player('Guest ${game.players.length}')];
     for (var newPlayer in newPlayers) {
       newPlayer.addListener(() {
         if (newPlayer.hasWon) {

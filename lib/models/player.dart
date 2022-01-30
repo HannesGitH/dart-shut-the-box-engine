@@ -4,6 +4,8 @@ class Player extends ChangeNotifier {
   bool hasWon;
   late List<Card> cards;
 
+  final String name;
+
   void select(int cardIndex) {
     final card = cards.at(cardIndex);
     if ((card != null) &&
@@ -45,7 +47,7 @@ class Player extends ChangeNotifier {
   /// how many points they still have to choose
   int get roundEyes => _availableAugen;
 
-  Player({this.hasWon = false, List<Card>? cardset})
+  Player(this.name, {this.hasWon = false, List<Card>? cardset})
       : cards = cardset ?? defaultCardSet;
 
   /// wheather this player is done , aka has all his cards layed down
