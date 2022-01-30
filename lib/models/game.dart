@@ -6,7 +6,7 @@ class Game {
   List<Dice> dice;
   Game({List<Dice>? dice})
       : players = [],
-        this.dice = dice ?? List.filled(2, Dice(), growable: true);
+        this.dice = dice ?? [Dice(), Dice()];
 }
 
 class GameVM extends ChangeNotifier {
