@@ -1,6 +1,6 @@
 name: shut_the_box_engine
 description: Engine to build Shut The Boy Games upon.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/HannesGitH/dart-shut-the-box-engine
 
 environment:
