@@ -42,12 +42,17 @@ class Player extends ChangeNotifier {
 
   void endRound() {
     if (roundEyes == 0) _layDownAllSelected();
+    if (true /*Todo: use deselectForNextRoundProvider*/) _deSelectAll();
     _availableAugen = 0;
     notifyListeners();
   }
 
   void _layDownAllSelected() {
     cards.forEach((element) => element.layDownIfSelected());
+  }
+
+  void _deSelectAll() {
+    cards.forEach((element) => element.isSelected = false);
   }
 
   int _availableAugen = 0;

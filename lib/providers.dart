@@ -9,3 +9,5 @@ final augenZahlProvider = StateProvider<int?>((ref) => null);
 List<ChangeNotifierProvider<N>> provFromList<N extends ChangeNotifier>(
         List<N> notifiers) =>
     notifiers.map((p) => ChangeNotifierProvider((_) => p)).toList();
+
+final deselectForNextRoundProvider = Provider<bool>((_) => false);
