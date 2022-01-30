@@ -1,3 +1,7 @@
+## 0.1.0
+
+* first roughly working version
+
 ## 0.0.2
 
 * bug fixes

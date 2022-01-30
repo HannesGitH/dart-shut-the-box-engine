@@ -38,3 +38,5 @@ class GameView extends ConsumerWidget {
 ```
 
 ## Additional information
+
+for an example see [here](https://github.com/HannesGitH/flutter-shut-the-box)
