@@ -6,6 +6,6 @@ final gameProvider = ChangeNotifierProvider.family<GameVM, Game?>((ref, game) {
 
 final augenZahlProvider = StateProvider<int?>((ref) => null);
 
-List<AutoDisposeChangeNotifierProvider<N>> provFromList<
-        N extends ChangeNotifier>(List<N> notifiers) =>
-    notifiers.map((p) => ChangeNotifierProvider.autoDispose((_) => p)).toList();
+List<ChangeNotifierProvider<N>> provFromList<N extends ChangeNotifier>(
+        List<N> notifiers) =>
+    notifiers.map((p) => ChangeNotifierProvider((_) => p)).toList();
