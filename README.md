@@ -1,39 +1,40 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# Shut The Box Game Engine
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- provides the logic and game-management layer to build shut the box games upon
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+add `shut_the_box_engine` to your pubspec.yaml
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+this packages provides a `gameProvider` which can be used in provider patterns to access all stuff needed.
+let intellij show you the rest.
+
+This is how you would create a Counter app (thats not what this package is about lol):
 
 ```dart
-const like = 'sample';
+import 'package:shut_the_box_engine/shut_the_box_engine.dart' as E;
+
+class GameView extends ConsumerWidget {
+  final _gamep = E.gameProvider(E.Game());
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gamep = ref.watch(_gamep); //.game;
+    return Scaffold(
+      body: Center(
+        child: Text(gamep.game.players.length.toString()),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ref.read(_gamep).addPlayers([E.Player()]);
+        },
+      ),
+    );
+  }
+}
 ```
 
 ## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
