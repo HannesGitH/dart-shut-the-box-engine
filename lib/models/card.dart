@@ -5,16 +5,24 @@ class Card extends ChangeNotifier {
   /// wheather this card was already selected, should only be read, not written
   bool isDown;
 
+  bool _isSelected = false;
+  set isSelected(bool selected) {
+    _isSelected = selected;
+    notifyListeners();
+  }
+
+  bool get isSelected => _isSelected;
+
   /// which number this card has
   int number;
 
   Card({required this.number, this.isDown = false});
 
-  ///select this [Card] to lay it down (isDown=true) and notify all subscribersmthat this card changed
-  bool select() {
+  bool layDownIfSelected() {
+    if (!isSelected) return false;
     bool wasDown = isDown;
     isDown = true;
-    notifyListeners();
+    isSelected = false;
     return !wasDown;
   }
 }

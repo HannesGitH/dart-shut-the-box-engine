@@ -4,10 +4,12 @@ class Player extends ChangeNotifier {
   bool hasWon;
   late List<Card> cards;
 
-  /// select one of his Cards to lay it down if possible
   void select(int cardIndex) {
     final card = cards.at(cardIndex);
-    if ((card != null) && (card.number <= _availableAugen) && (card.select())) {
+    if ((card != null) &&
+        (card.number <= _availableAugen) &&
+        (!card.isSelected)) {
+      card.isSelected = true;
       _availableAugen -= card.number;
       notifyListeners();
       if (cards.every((element) => element.isDown)) {
@@ -15,6 +17,27 @@ class Player extends ChangeNotifier {
         notifyListeners();
       }
     }
+  }
+
+  void deSelect(int cardIndex) {
+    final card = cards.at(cardIndex);
+    if ((card != null) &&
+        (card.number <= _availableAugen) &&
+        (card.isSelected)) {
+      card.isSelected = false;
+      _availableAugen += card.number;
+      notifyListeners();
+    }
+  }
+
+  void endRound() {
+    if (roundEyes == 0) _layDownAllSelected();
+    _availableAugen = 0;
+    notifyListeners();
+  }
+
+  void _layDownAllSelected() {
+    cards.forEach((element) => element.layDownIfSelected());
   }
 
   int _availableAugen = 0;
