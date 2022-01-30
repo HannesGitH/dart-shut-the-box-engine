@@ -6,6 +6,12 @@ class Player extends ChangeNotifier {
 
   final String name;
 
+  void toggleCard(int cardIndex) {
+    final card = cards.at(cardIndex);
+    if (card == null || card.isDown) return;
+    cards.at(cardIndex)!.isSelected ? deSelect(cardIndex) : select(cardIndex);
+  }
+
   void select(int cardIndex) {
     final card = cards.at(cardIndex);
     if ((card != null) &&
@@ -27,9 +33,7 @@ class Player extends ChangeNotifier {
 
   void deSelect(int cardIndex) {
     final card = cards.at(cardIndex);
-    if ((card != null) &&
-        (card.number <= _availableAugen) &&
-        (card.isSelected)) {
+    if ((card != null) && (card.isSelected)) {
       card.isSelected = false;
       _availableAugen += card.number;
       notifyListeners();
