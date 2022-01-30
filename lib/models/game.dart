@@ -26,11 +26,13 @@ class GameVM extends ChangeNotifier {
     }
     game.players.addAll(newPlayers);
     notifyListeners();
+    nextRound();
   }
 
   addDice(Iterable<Dice>? newDice) {
     game.dice.addAll(newDice ?? [Dice()]);
     notifyListeners();
+    nextRound();
   }
 
   /// roll all [Dice] this [Game] has
@@ -54,6 +56,7 @@ class GameVM extends ChangeNotifier {
     winner = null;
     game.players.forEach((p) => p.reset());
     notifyListeners();
+    nextRound();
   }
 
   Player? winner;
